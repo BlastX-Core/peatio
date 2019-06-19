@@ -156,7 +156,7 @@ while($running) do
       retries ||= 0
       ActiveRecord::Base.connection.reconnect!
     rescue
-      sleep_time = (retries += 1)**1.5
+      sleep_time = ((retries += 1)**1.5).round
       Rails.logger.info { "#{retries} retry. Waiting for connection #{sleep_time} seconds..." }
       sleep sleep_time
       retries < 5 ? retry : raise(e) # will retry the reconnect
