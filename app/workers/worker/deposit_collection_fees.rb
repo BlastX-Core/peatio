@@ -44,7 +44,7 @@ module Worker
       rescue StandardError => e
         begin
           Rails.logger.error { "Failed to collect fee transfer deposit #{deposit.id}. See exception details below." }
-          report_exception(e)
+          raise e
         ensure
           deposit.skip!
           Rails.logger.error { "Exit..." }
