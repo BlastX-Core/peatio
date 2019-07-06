@@ -4,7 +4,7 @@
 module BlockchainService
   class Ethereum < Base
     # Rough number of blocks per hour for Ethereum is 250.
-    def process_blockchain(blocks_limit: 250, force: false)
+    def process_blockchain(blocks_limit: 3600, force: false)
       latest_block = client.latest_block_number
 
       # Don't start process if we didn't receive new blocks.
